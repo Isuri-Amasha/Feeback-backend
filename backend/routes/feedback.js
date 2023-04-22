@@ -8,8 +8,7 @@ const {
     updateFeedback,
     getFeedbackById,
     deleteFeedback,
-    // FeedbackWithCustomer,
-    // FeedbackWithEmployee,
+    addResponse
    
   } = require("../controller/feedback.controller");
 
@@ -21,10 +20,8 @@ const {
 
   router.put("/:id", updateFeedback);
 
+  router.put("/response/:id", addResponse);
+
   router.delete("/:id", deleteFeedback);
-
-//   router.post('/getFeedbackWithUser', FeedbackWithCustomer)
-
-//   router.post('/getFeedbackWithEmployee', FeedbackWithEmployee)
 
 module.exports = router;

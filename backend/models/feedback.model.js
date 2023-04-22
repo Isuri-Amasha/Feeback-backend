@@ -8,7 +8,7 @@ const feedbackSchema = new Schema({
     student : {type : String,required : true},
     rating : {type : String,required : true},
     feedback: {type :String, required : true},
-
+    response: {type :String},
     
      
 },{

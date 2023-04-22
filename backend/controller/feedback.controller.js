@@ -42,7 +42,7 @@ const addFeedback = async (req, res) => {
         existingFeedback.student = req.body.student;
         existingFeedback.rating = req.body.rating;
         existingFeedback.feedback = req.body.feedback;
-        
+        existingFeedback.response = req.body.response;
         
         existingFeedback
           .save()
@@ -52,6 +52,23 @@ const addFeedback = async (req, res) => {
       .catch((error) => res.status(400).json("Error: " + error));
   };
   
+  const addResponse = async (req, res) => {
+    Feedback.findByIdAndUpdate(req.params.id)
+      .then((existingFeedback) => {
+        existingFeedback.course = req.body.course;
+        existingFeedback.student = req.body.student;
+        existingFeedback.rating = req.body.rating;
+        existingFeedback.feedback = req.body.feedback;
+        existingFeedback.response = req.body.response;
+        
+        existingFeedback
+          .save()
+          .then(() => res.json('Response Added!'))
+          .catch((error) => res.status(400).json("Error: " + error));
+      })
+      .catch((error) => res.status(400).json("Error: " + error));
+  };
+
   const deleteFeedback = async (req, res) => {
     Feedback.findByIdAndDelete(req.params.id)
       .then((deletedFeedback) => {
@@ -60,17 +77,6 @@ const addFeedback = async (req, res) => {
       .catch((error) => res.status(400).json("Error: " + error));
   };
 
-//   const FeedbackWithCustomer = async (req,res) => {
-//     const feedbackData = await Feedback.find({_id:req.body.user}).populate('userContact');
-  
-//     res.send(feedbackData);
-//   };
-
-//   const FeedbackWithEmployee = async (req,res) => {
-//     const feedbackData = await Feedback.find({_id:req.body.emp}).populate('empID');
-  
-//     res.send(feedbackData);
-//   };
   
   module.exports = {
     addFeedback,
@@ -78,7 +84,7 @@ const addFeedback = async (req, res) => {
     getFeedbackById,
     updateFeedback,
     deleteFeedback,
-    // FeedbackWithCustomer,
-    // FeedbackWithEmployee,
+    addResponse
+  
    
   }
